@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Lint Code') {
             steps {
-                sh 'pylint app/ > pylint_report.txt || true'
+                bat 'pylint app > pylint_report.txt || exit 0'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'pytest --junitxml=test_results.xml'
+                bat 'pytest --junitxml=test_results.xml'
             }
         }
 
